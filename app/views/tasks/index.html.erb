@@ -1,0 +1,11 @@
+<%= render '/layouts/title', title: 'All Tasks' %>
+
+<%= flash[:notice] %>	</br>
+
+<% @task.each do |task|%>
+		<%= task.name %>
+		<%= task.description %>
+		<%= task.importance %>
+		<%= task.due %>
+		<%= task.status %></br>
+<% end %>

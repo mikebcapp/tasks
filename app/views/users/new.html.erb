@@ -1,0 +1,18 @@
+<%= render 'layouts/title', title: 'Register User' %>
+
+<% @user.errors.full_messages.each do | msg| %>
+	<li><%= msg %></li><br/>
+<% end %>
+
+<%= form_for @user do |f| %>
+	<%= f.label :username %>
+	<%= f.text_field :username %><br>
+	<%= f.label :email %>
+	<%= f.text_field :email %><br>
+	<%= f.label :password %>
+	<%= f.password_field :password_digest%><br>
+	<%= f.label :manager %>
+	<%= f.text_field :manager %><br>
+	
+	<%= f.submit %>
+<% end %>

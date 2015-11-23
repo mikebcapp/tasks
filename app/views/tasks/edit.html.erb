@@ -1,0 +1,20 @@
+<%= render '/layouts/title', title: 'Edit Task' %>
+
+<% @task.errors.full_messages.each do |msg|%>
+	<li><%= msg %></li></br>
+<%end %>
+	
+
+<%= form_for @task do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %><br>
+	<%= f.label :description %>
+	<%= f.text_area :description, rows: 5 %><br>
+	<%= f.label :importance %>
+	<%= f.number_field :importance %><br>
+	<%= f.label :date_due %>
+	<%= f.datetime_field :due %><br>
+	<%= f.label :task_status %>
+	<%= f.select :status, [['Not started'],['In progress'],['Completed']] %><br>
+	<%= f.submit %>
+<% end %>

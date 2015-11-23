@@ -1,0 +1,13 @@
+<%= render '/layouts/title', title: 'Log In' %>
+
+
+	<%=form_tag '/login', method: 'post' do %>
+		<%= label_tag :username %>
+		<%= text_field_tag :username %>
+	</br>
+		<%= label_tag :password %>
+		<%= password_field_tag :password %>
+	
+		<%= submit_tag 'Login' %>
+	<% end %>
+
