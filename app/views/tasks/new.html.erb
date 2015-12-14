@@ -1,24 +1,49 @@
 <%= render '/layouts/title', title: 'New Task' %>
+<%=render '/layouts/errors', obj: @task %>
+<%=render '/layouts/flash_messages' %>
 
-<% @task.errors.full_messages.each do |msg|%>
-	<li><%= msg %></li></br>
-<%end %>
 	
-<%= flash[:notice] %>	
-
-<%= form_for @task do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %><br>
-	<%= f.label :description %>
-	<%= f.text_area :description, rows: 5 %><br>
-	<%= f.label :importance %>
-	<%= f.number_field :importance %><br>
-	<%= f.label :date_due %>
-	<%= f.datetime_field :due %><br>
-	<%= f.label :task_status %>
-	<%= f.select :status, [['Not started'],['In progress'],['Completed']] %><br>
-	<%= f.submit %>
-<% end %>
+<div class= "container">
+	<div class="well">
+		<%= form_for @task, html:{class: "form-horizontal"} do |f| %>
+			<div class = "form-group">
+				<%= f.label :name, class: "col-md-2 control-label"%>
+				<div class = "col-md-3">
+					<%= f.text_field :name, class: "form-control" %><br>
+				</div>
+			</div>
+			<div class = "form-group">
+				<%= f.label :description, class: "col-md-2 control-label" %>
+				<div class = "col-md-3">
+					<%= f.text_area :description, rows: 5, class: "form-control" %><br>
+				</div>
+			</div>
+			<div class = "form-group">	
+				<%= f.label :importance, class: "col-md-2 control-label" %>
+				<div class = "col-md-3">
+					<%= f.number_field :importance, class: "form-control" %>
+				</div>
+			</div>
+			<div class = "form-group">	
+				<%= f.label :date_due, class: "col-md-2 control-label"  %>
+				<div class = "col-md-3">
+					<%= f.datetime_field :due, class: "form-control" %>
+				</div>
+			</div>
+			<div class = "form-group">	
+				<%= f.label :task_status, class: "col-md-2 control-label" %>
+				<div class = "col-md-3">
+					<%= f.select :status, [['Not started'],['In progress'],['Completed']] %>
+				</div>
+			</div>
+			<div class = "form-group">
+				<div class="col-sm-offset-2 col-sm-3">
+					<%= f.submit "Create Task", class:"btn btn-default btn-primary" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
 
 
 

@@ -1,0 +1,17 @@
+
+<% if obj.errors.any? %>
+	<div class='container'>
+		<div class='alert alert-danger'>
+			<h5>There were <%= obj.errors.count %> errors:</h5>
+				<ul>
+					<% obj.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</h5>
+		</div>
+	</div>
+<% end %>
+
+
+      

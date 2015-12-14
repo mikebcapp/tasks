@@ -1,11 +1,32 @@
 <%= render '/layouts/title', title: 'All Tasks' %>
-
-<%= flash[:notice] %>	</br>
-
-<% @task.each do |task|%>
-		<%= task.name %>
-		<%= task.description %>
-		<%= task.importance %>
-		<%= task.due %>
-		<%= task.status %></br>
-<% end %>
+<%= render '/layouts/flash_messages' %>
+	
+<div class="row">
+	<div class="col-md-6 quarter;">
+	<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>Task</th>
+				<th>Importance</th>
+				<th>Due Date</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% important_and_urgent.each do |task| %>
+				<td><%= task.name %></td>
+				<td><%= task.importance %></td>
+				<td><%= display_datetime(task.due) %></td>
+				<td><%= task.status %></td>
+			</tr>
+			<%end %>
+		</tbody>
+	</table>
+</div>
+	<%=render 'layouts/quad_table'  %>
+</div>
+<div class="row">
+	<%=render 'layouts/quad_table'%>
+	<%=render 'layouts/quad_table'%>
+</div>
+	
