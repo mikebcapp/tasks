@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
-helper_method :important_tasks, :urgent_tasks, :unimportant_tasks, :non_urgent_tasks, :important_and_urgent
-
+helper_method  :important_and_urgent, :important_and_non_urgent, :unimportant_and_non_urgent,
+              :unimportant_and_urgent,:important_tasks, :unimportant_tasks, :non_urgent_tasks
   def index
     @task = Task.all
   end
@@ -21,9 +21,14 @@ helper_method :important_tasks, :urgent_tasks, :unimportant_tasks, :non_urgent_t
     end
   end
 
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def edit
     @task = Task.find(params[:id])
   end
+
 
   def update
     @task = Task.find(params[:id])
@@ -36,39 +41,43 @@ helper_method :important_tasks, :urgent_tasks, :unimportant_tasks, :non_urgent_t
   end
 
   def important_and_urgent
-    important_tasks
-    urgent_tasks
+    important_tasks - non_urgent_tasks
+  end
+
+  def important_and_non_urgent
+    important_tasks - urgent_tasks
   end
 
   def unimportant_and_non_urgent
-    @task = unimportant_tasks
-    @task = non_urgent_tasks
+    (unimportant_tasks - urgent_tasks).sort{|x,y| y <=> x }
   end
 
-
+  def unimportant_and_urgent
+     unimportant_tasks - non_urgent_tasks
+  end
   
   def important_tasks
-      @task = Task.select do |task|
-      @task = task.importance > 8
+      Task.select do |task|
+      task.importance > 8
     end
   end
 
-    def unimportant_tasks
-        @task = Task.select do |task|
-        @task = task.importance < 8
-      end
+  def unimportant_tasks
+     Task.select do |task|
+     task.importance < 8
     end
+  end
 
   def urgent_tasks
-    @task = Task.select do |task|
-    @task = task.due > urgent_range
+    Task.select do |task|
+     task.due > urgent_range
     end
   end
 
 
   def non_urgent_tasks
-    @task = Task.select do |task|
-    @task = task.due < urgent_range
+     Task.select do |task|
+     task.due < urgent_range
     end
   end
 

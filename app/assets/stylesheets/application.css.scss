@@ -26,6 +26,10 @@ html,body {
         min-height:100%;
       }
 
+table {
+  margin: 0 0 20px;
+
+}
 
 .row{
 height:40%;
@@ -39,11 +43,3 @@ height:100%;
 float:left;
 }
 
-.equal, .equal > div[class*='col-'] {  
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-      flex:1 0 auto;
-  }

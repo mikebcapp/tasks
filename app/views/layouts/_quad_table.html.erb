@@ -1,5 +1,6 @@
+
 <div class="col-md-6 quarter;">
-	<table class="table table-condensed">
+	<table class="table table-condensed ">
 		<thead>
 			<tr>
 				<th>Task</th>
@@ -9,10 +10,9 @@
 			</tr>
 		</thead>
 		<tbody>
-
-			<% unimportant_tasks.select do |task|%>
+			<% task_types.select do |task|%>
 				<tr>
-					<td><%= task.name %></td>
+					<td><%= link_to task.name, edit_task_path(@task) %></td>
 					<td><%= task.importance %></td>
 					<td><%= display_datetime(task.due) %></td>
 					<td><%= task.status %></td>
